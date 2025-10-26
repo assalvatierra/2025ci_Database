@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore p1:name="SecurityDB" p1:Guid="d8820e84-2fd8-40bf-ae1e-92445ed0402a" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="AspNetRoleClaims" entity-set="AspNetRoleClaims" table="AspNetRoleClaims" schema="dbo" p1:Guid="01d4c52e-2f81-4c07-857c-e191c9f2f201">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="a30b2d55-a509-4891-9678-2472e506fc00">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="RoleId" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="b03ca012-ebb0-443b-b4ba-efd32249c573">
+      <column name="RoleId" not-null="True" length="450" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ClaimType" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="d6ac3358-df9f-494c-bc18-637d13a328df">
+      <column name="ClaimType" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="ClaimValue" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="811148e9-6711-4f9b-bd7b-36f430c38ec6">
+      <column name="ClaimValue" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetRoles" entity-set="AspNetRoles" table="AspNetRoles" schema="dbo" p1:Guid="3445aadc-e94d-43c0-bae0-7010152ebbd3">
+    <id name="Id" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="052b92a1-d738-4abb-bd55-0797a9400125">
+      <column name="Id" not-null="True" length="450" sql-type="nvarchar" p1:unicode="True" />
+    </id>
+    <property name="Name" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="a28911bc-6b3d-4845-8b47-24b4e60cce39">
+      <column name="Name" not-null="False" length="256" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="NormalizedName" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="82f39569-d182-4b57-8ccb-894ec528c7e7">
+      <column name="NormalizedName" not-null="False" length="256" sql-type="nvarchar" unique="True" p1:unicode="True" />
+    </property>
+    <property name="ConcurrencyStamp" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0692c7d9-d6d0-4c7e-929f-679694b4524c">
+      <column name="ConcurrencyStamp" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetUserClaims" entity-set="AspNetUserClaims" table="AspNetUserClaims" schema="dbo" p1:Guid="7447ec84-c3e0-4dfd-a334-c9f542d61aa1">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="5b49fdc9-ace1-4415-9d16-bed371f4e321">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="UserId" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="c97ead58-67e3-4d31-ae15-f3a21c4f13df">
+      <column name="UserId" not-null="True" length="450" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ClaimType" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="90fd89ed-1c10-4c74-9593-0fbdc172aca3">
+      <column name="ClaimType" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="ClaimValue" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3a40cb9a-b680-4c1b-b8da-4659f92604de">
+      <column name="ClaimValue" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetUserLogins" entity-set="AspNetUserLogins" table="AspNetUserLogins" schema="dbo" p1:Guid="07037578-586c-45e7-8a48-1b9c864f91f9">
+    <composite-id>
+      <key-property name="LoginProvider" type="String" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="266eef54-a430-41ab-bf62-23a29141a029">
+        <column name="LoginProvider" not-null="True" length="128" sql-type="nvarchar" p1:unicode="True" />
+      </key-property>
+      <key-property name="ProviderKey" type="String" primary-key-index="1" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="e68dfd5d-d63f-4282-bf85-afce29a9fef7">
+        <column name="ProviderKey" not-null="True" length="128" sql-type="nvarchar" p1:unicode="True" />
+      </key-property>
+    </composite-id>
+    <property name="ProviderDisplayName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="045f3fe2-2272-4d8f-97fb-63744d934ad2">
+      <column name="ProviderDisplayName" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="UserId" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="82dbdf74-c29a-4ac4-8d74-5bc07cfa124e">
+      <column name="UserId" not-null="True" length="450" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetUserRoles" entity-set="AspNetUserRoles" table="AspNetUserRoles" schema="dbo" p1:Guid="06e90c4a-9478-4fa3-b7b8-e186a7539571">
+    <composite-id>
+      <key-property name="UserId" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="6b95413d-9637-4fbd-8c79-665501e4c0a3">
+        <column name="UserId" not-null="True" length="450" sql-type="nvarchar" p1:unicode="True" />
+      </key-property>
+      <key-property name="RoleId" type="String" primary-key-index="1" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="63c594bb-8794-414c-aefc-6832f4082b2f">
+        <column name="RoleId" not-null="True" length="450" sql-type="nvarchar" p1:unicode="True" />
+      </key-property>
+    </composite-id>
+  </class>
+  <class name="AspNetUsers" entity-set="AspNetUsers" table="AspNetUsers" schema="dbo" p1:Guid="3ffbc355-1547-42db-909e-be2a6386b0bb">
+    <id name="Id" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="7209ae2d-5b1b-4e23-b2ee-c18e582b363a">
+      <column name="Id" not-null="True" length="450" sql-type="nvarchar" p1:unicode="True" />
+    </id>
+    <property name="UserName" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="e7ca1e8d-9aaf-4d73-ba74-526ffda1c5d1">
+      <column name="UserName" not-null="False" length="256" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="NormalizedUserName" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="727a19fb-3227-4a51-bfd6-e31ba9ce8cc8">
+      <column name="NormalizedUserName" not-null="False" length="256" sql-type="nvarchar" unique="True" p1:unicode="True" />
+    </property>
+    <property name="Email" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="348d5e7d-6e28-46a4-8ec6-e925c40462fc">
+      <column name="Email" not-null="False" length="256" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="NormalizedEmail" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="44c9b326-300f-4ff5-abe7-b92b8ec3fe64">
+      <column name="NormalizedEmail" not-null="False" length="256" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="EmailConfirmed" type="Boolean" p1:ValidateRequired="true" p1:Guid="3085b6e3-5fa0-4a84-a9dc-b4dacb5b79ae">
+      <column name="EmailConfirmed" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="PasswordHash" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e446a764-e6b4-4299-acb0-155044b101e0">
+      <column name="PasswordHash" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="SecurityStamp" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f4d3c8a4-497c-49ae-9bbb-797b75fdadaf">
+      <column name="SecurityStamp" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="ConcurrencyStamp" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bb6ff015-f951-4b85-b1c2-ddee1621d7a2">
+      <column name="ConcurrencyStamp" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="PhoneNumber" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e4a4107a-13aa-4be6-af57-af42d11b4bb9">
+      <column name="PhoneNumber" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="PhoneNumberConfirmed" type="Boolean" p1:ValidateRequired="true" p1:Guid="ab608cd6-e3ce-4b57-a7fe-6b03679be1e0">
+      <column name="PhoneNumberConfirmed" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="TwoFactorEnabled" type="Boolean" p1:ValidateRequired="true" p1:Guid="20cd443f-8db3-42ab-9377-f6976d6564ce">
+      <column name="TwoFactorEnabled" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="LockoutEnd" type="DateTimeOffset" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="278abee8-22c3-4e0f-9ce5-3fe6fc324adc">
+      <column name="LockoutEnd" not-null="False" sql-type="datetimeoffset" p1:unicode="False" />
+    </property>
+    <property name="LockoutEnabled" type="Boolean" p1:ValidateRequired="true" p1:Guid="154e0616-7f95-466d-9752-414d79f07e65">
+      <column name="LockoutEnabled" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="AccessFailedCount" type="Int32" p1:ValidateRequired="true" p1:Guid="5556194e-0619-4ea5-a045-d179d5f6e165">
+      <column name="AccessFailedCount" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="AspNetUserTokens" entity-set="AspNetUserTokens" table="AspNetUserTokens" schema="dbo" p1:Guid="3505acb8-f481-41cd-bd50-88aedd4f915c">
+    <composite-id>
+      <key-property name="UserId" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="e5b9a725-017c-4c45-91b2-3e0bc7e529f5">
+        <column name="UserId" not-null="True" length="450" sql-type="nvarchar" p1:unicode="True" />
+      </key-property>
+      <key-property name="LoginProvider" type="String" primary-key-index="1" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="06b27b23-5f05-4296-abbb-d41b0b2de525">
+        <column name="LoginProvider" not-null="True" length="128" sql-type="nvarchar" p1:unicode="True" />
+      </key-property>
+      <key-property name="Name" type="String" primary-key-index="2" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="f500e7b8-fac2-49df-9eb5-c8bb5768a9ed">
+        <column name="Name" not-null="True" length="128" sql-type="nvarchar" p1:unicode="True" />
+      </key-property>
+    </composite-id>
+    <property name="Value" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="d20d23ba-3612-464f-840e-13731b41da47">
+      <column name="Value" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+  </class>
+  <associations>
+    <association name="AspNetRoles_AspNetRoleClaims" cardinality="OneToMany" on-delete="Cascade" p1:Guid="f7ab237a-b1a7-43b4-9814-5655b089a110">
+      <end1 multiplicity="One" name="AspNetRoles" class="AspNetRoleClaims" relation-class="AspNetRoles" constrained="True" lazy="False" p1:Guid="d0f216f2-a4f6-4ded-bea2-774b8f1b6c9d">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetRoleClaims" class="AspNetRoles" relation-class="AspNetRoleClaims" lazy="False" p1:Guid="01b059ce-47cd-4398-b29f-9a232694d666">
+        <property name="RoleId" />
+      </end2>
+    </association>
+    <association name="AspNetUsers_AspNetUserClaims" cardinality="OneToMany" on-delete="Cascade" p1:Guid="c0c847b0-2bce-4ba0-800f-a184b9bb9fbb">
+      <end1 multiplicity="One" name="AspNetUsers" class="AspNetUserClaims" relation-class="AspNetUsers" constrained="True" lazy="False" p1:Guid="eddcd1c7-b07d-4f54-b174-8af9f4886355">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetUserClaims" class="AspNetUsers" relation-class="AspNetUserClaims" lazy="False" p1:Guid="0ae5118a-e352-4894-9973-6a7cf06b8f91">
+        <property name="UserId" />
+      </end2>
+    </association>
+    <association name="AspNetUsers_AspNetUserLogins" cardinality="OneToMany" on-delete="Cascade" p1:Guid="db98ae11-89d5-4266-9ba4-17af58586385">
+      <end1 multiplicity="One" name="AspNetUsers" class="AspNetUserLogins" relation-class="AspNetUsers" constrained="True" lazy="False" p1:Guid="3cde4622-85bb-4f40-bddf-f22c93716edd">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetUserLogins" class="AspNetUsers" relation-class="AspNetUserLogins" lazy="False" p1:Guid="f2dcbcc4-b77e-4491-8ffc-b0f18307bdc4">
+        <property name="UserId" />
+      </end2>
+    </association>
+    <association name="AspNetRoles_AspNetUserRoles" cardinality="OneToMany" on-delete="Cascade" p1:Guid="5980b261-dbcb-487a-8e03-a825c786cb61">
+      <end1 multiplicity="One" name="AspNetRoles" class="AspNetUserRoles" relation-class="AspNetRoles" constrained="True" lazy="False" p1:Guid="56a062c5-1e9c-4242-ac93-cc9a1f969fea">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetUserRoles" class="AspNetRoles" relation-class="AspNetUserRoles" lazy="False" p1:Guid="730cc8c5-c6e7-43b1-a244-9af17f0185ed">
+        <property name="RoleId" />
+      </end2>
+    </association>
+    <association name="AspNetUsers_AspNetUserRoles" cardinality="OneToMany" on-delete="Cascade" p1:Guid="c09e3eb8-615b-475f-91bb-b533ba02dae8">
+      <end1 multiplicity="One" name="AspNetUsers" class="AspNetUserRoles" relation-class="AspNetUsers" constrained="True" lazy="False" p1:Guid="391bc4c8-ee97-420c-aedc-213662b7e43a">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetUserRoles" class="AspNetUsers" relation-class="AspNetUserRoles" lazy="False" p1:Guid="36fe0256-9855-4fe8-bab4-13a28342b0e7">
+        <property name="UserId" />
+      </end2>
+    </association>
+    <association name="AspNetUsers_AspNetUserTokens" cardinality="OneToMany" on-delete="Cascade" p1:Guid="680e24d2-2cb5-445f-9e4f-b1efabad2eff">
+      <end1 multiplicity="One" name="AspNetUsers" class="AspNetUserTokens" relation-class="AspNetUsers" constrained="True" lazy="False" p1:Guid="53c4b237-3503-42cf-b24c-5b0db144afc4">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetUserTokens" class="AspNetUsers" relation-class="AspNetUserTokens" lazy="False" p1:Guid="78a1200e-1b4d-4afa-92b8-5f3471d4c7a6">
+        <property name="UserId" />
+      </end2>
+    </association>
+  </associations>
+</efcore>

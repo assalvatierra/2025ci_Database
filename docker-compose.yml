@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  postgresql-with-schema:
+    build: .
+    container_name: postgresql-schema-runner
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=schemadb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=YourStrong@Passw0rd
+    volumes:
+      # Optional: Persist database data
+      - postgresql_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d schemadb"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+volumes:
+  postgresql_data:
