@@ -1,5 +1,8 @@
 # 2025ci_Database
 
+![Docker Build & Push](https://github.com/assalvatierra/2025ci_Database/actions/workflows/docker-build-push.yml/badge.svg)
+[![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-postgresql--schema--runner-blue)](https://github.com/assalvatierra/2025ci_Database/pkgs/container/2025ci_database%2Fpostgresql-schema-runner)
+
 | Folder          | Purpose                                                                                                      |
 | --------------- | ------------------------------------------------------------------------------------------------------------ |
 | **Diagrams/**   | Holds all Model Diagrams                                                                                     |
@@ -55,9 +58,19 @@ docker-compose logs -f
 docker-compose down
 ```
 
-**Option 2: Docker Build & Run**
+**Option 2: Use Pre-built Image from GitHub Container Registry**
 ```bash
-# Build the image
+# Pull and run the latest image
+docker run -p 5432:5432 \
+  -e POSTGRES_DB=schemadb \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=YourStrong@Passw0rd \
+  ghcr.io/assalvatierra/2025ci_database/postgresql-schema-runner:latest
+```
+
+**Option 3: Docker Build & Run (Local Development)**
+```bash
+# Build the image locally
 docker build -t postgresql-schema .
 
 # Run the container
