@@ -67,6 +67,9 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
+        build-args: |
+          BUILDPLATFORM=linux/amd64
+          TARGETPLATFORM=linux/amd64
 
     - name: Image pushed successfully
       if: github.event_name != 'pull_request'

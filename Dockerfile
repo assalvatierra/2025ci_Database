@@ -1,6 +1,6 @@
 # Multi-stage Dockerfile for PostgreSQL with Schema Runner
 # Stage 1: Build SchemaRunner
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:9.0-bookworm-slim AS build-env
 WORKDIR /app
 
 # Copy SchemaRunner project files
@@ -12,27 +12,16 @@ RUN dotnet restore
 COPY SchemaRunner/ ./
 RUN dotnet publish -c Release -o /app/out
 
-# Stage 2: .NET Runtime base
-FROM mcr.microsoft.com/dotnet/runtime:9.0 AS dotnet-runtime
+# Stage 2: PostgreSQL with SchemaRunner
+FROM postgres:16-bookworm
 
-# Stage 3: PostgreSQL with SchemaRunner
-FROM postgres:16
-
-# Copy .NET Runtime from official Microsoft image
-COPY --from=dotnet-runtime /usr/share/dotnet /usr/share/dotnet
-COPY --from=dotnet-runtime /usr/bin/dotnet /usr/bin/dotnet
-
-# Install required dependencies for .NET Runtime
+# Install .NET Runtime using the official install script (more reliable)
 RUN apt-get update && \
-    apt-get install -y \
-        ca-certificates \
-        libc6 \
-        libgcc1 \
-        libgssapi-krb5-2 \
-        libicu72 \
-        libssl3 \
-        libstdc++6 \
-        zlib1g && \
+    apt-get install -y curl && \
+    curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 9.0 --runtime dotnet --install-dir /usr/share/dotnet && \
+    ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet && \
+    apt-get remove -y curl && \
+    apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
 # Create app directory and set proper ownership
