@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SchemaRunner": {
+      "commandName": "Project",
+      "commandLineArgs": "--execute --server localhost --database postgres --username postgres --password admin\r\n"
+    }
+  }
+}

@@ -308,18 +308,18 @@ class Program
         try
         {
             // First check if the sysdbscriptlog table exists (PostgreSQL is case-sensitive)
-            var checkTableSql = @"
-                SELECT COUNT(*) 
-                FROM information_schema.tables 
-                WHERE table_name = 'sysdbscriptlog' AND table_schema = 'public'";
-            
-            using var checkCommand = new NpgsqlCommand(checkTableSql, connection);
-            var tableExists = ((int?)await checkCommand.ExecuteScalarAsync() ?? 0) > 0;
-            
-            if (!tableExists)
-            {
-                return false; // Table doesn't exist, so script hasn't run
-            }
+            //var checkTableSql = @"
+            //    SELECT COUNT(*) 
+            //    FROM information_schema.tables 
+            //    WHERE table_name = 'sysdbscriptlog' AND table_schema = 'public'";
+
+            //using var checkCommand = new NpgsqlCommand(checkTableSql, connection);
+            //var tableExists = ((int?)await checkCommand.ExecuteScalarAsync() ?? 0) > 0;
+
+            //if (!tableExists)
+            //{
+            //    return false; // Table doesn't exist, so script hasn't run
+            //}
 
             // Check if script has been logged
             var checkScriptSql = @"
@@ -330,7 +330,7 @@ class Program
             using var command = new NpgsqlCommand(checkScriptSql, connection);
             command.Parameters.AddWithValue("@ScriptName", scriptName);
             
-            var count = (int?)await command.ExecuteScalarAsync() ?? 0;
+            var count = Convert.ToInt64(await command.ExecuteScalarAsync() ?? 0L);
             return count > 0;
         }
         catch
@@ -381,17 +381,17 @@ class Program
             using var connection = new NpgsqlConnection(connectionStringBuilder.ConnectionString);
             await connection.OpenAsync();
 
-            // Check if table exists
-            var checkTableSql = @"
-                SELECT COUNT(*) 
-                FROM information_schema.tables 
-                WHERE table_name = 'sysdbscriptlog' AND table_schema = 'public'";
-            
-            using var checkCommand = new NpgsqlCommand(checkTableSql, connection);
-            var tableExists = ((int?)await checkCommand.ExecuteScalarAsync() ?? 0) > 0;
-            
-            if (!tableExists)
-                return result;
+            //// Check if table exists
+            //var checkTableSql = @"
+            //    SELECT COUNT(*) 
+            //    FROM information_schema.tables 
+            //    WHERE table_name = 'sysdbscriptlog' AND table_schema = 'public'";
+
+            //using var checkCommand = new NpgsqlCommand(checkTableSql, connection);
+            //var tableExists = ((int?)await checkCommand.ExecuteScalarAsync() ?? 0) > 0;
+
+            //if (!tableExists)
+            //    return result;
 
             // Get execution status for all scripts
             var statusSql = @"
