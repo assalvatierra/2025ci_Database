@@ -1,25 +1,19 @@
-name: Docker Build & Push
+name: Docker Build & Push (Simple)
 
 on:
   push:
     branches: [ main, master ]
     tags: [ 'v*.*.*' ]
-    paths:
-      - 'Dockerfile'
+    paths: 
+      - 'Dockerfile.simple'
       - 'SchemaRunner/**'
       - 'Schema/**'
-      - '.github/workflows/docker-build-push.yml'
-  pull_request:
-    branches: [ main, master ]
-    paths:
-      - 'Dockerfile'
-      - 'SchemaRunner/**'
-      - 'Schema/**'
+      - '.github/workflows/docker-build-push-simple.yml'
   workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/postgresql-schema-runner
+  IMAGE_NAME: ${{ github.repository }}/postgresql-schema-runner-simple
 
 jobs:
   build-and-push:
@@ -56,11 +50,12 @@ jobs:
           type=semver,pattern={{major}}
           type=raw,value=latest,enable={{is_default_branch}}
 
-    - name: Build and push Docker image
+    - name: Build and push Docker image (Simple)
       id: build
       uses: docker/build-push-action@v5
       with:
         context: .
+        file: ./Dockerfile.simple
         platforms: linux/amd64
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.meta.outputs.tags }}
@@ -71,6 +66,6 @@ jobs:
     - name: Image pushed successfully
       if: github.event_name != 'pull_request'
       run: |
-        echo "✅ Docker image pushed to registry"
+        echo "✅ Docker image (simple) pushed to registry"
         echo "📦 Tags: ${{ steps.meta.outputs.tags }}"
         echo "🏷️  Labels: ${{ steps.meta.outputs.labels }}"

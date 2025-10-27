@@ -60,7 +60,14 @@ docker-compose down
 
 **Option 2: Use Pre-built Image from GitHub Container Registry**
 ```bash
-# Pull and run the latest image
+# Pull and run the latest image (recommended)
+docker run -p 5432:5432 \
+  -e POSTGRES_DB=schemadb \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=YourStrong@Passw0rd \
+  ghcr.io/assalvatierra/2025ci_database/postgresql-schema-runner-simple:latest
+
+# Alternative: Full multi-stage image (if available)
 docker run -p 5432:5432 \
   -e POSTGRES_DB=schemadb \
   -e POSTGRES_USER=postgres \
