@@ -106,3 +106,7 @@ Once running, connect to PostgreSQL using:
 | `POSTGRES_PASSWORD` | `YourStrong@Passw0rd` | PostgreSQL user password |
 | `POSTGRES_DB` | `schemadb` | Target database name |
 | `POSTGRES_USER` | `postgres` | PostgreSQL username |
+
+
+### for non-containerzed running
+## Run batch file RunSR.bat
