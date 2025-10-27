@@ -74,3 +74,5 @@ jobs:
         echo "✅ Docker image pushed to registry"
         echo "📦 Tags: ${{ steps.meta.outputs.tags }}"
         echo "🏷️  Labels: ${{ steps.meta.outputs.labels }}"
+
+
